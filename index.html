@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HMT Automação | Automação Residencial Inteligente</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="https://via.placeholder.com/150x60?text=HMT+Automacao">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        /* Estilos gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #eaeaea;
+            color: #333;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        a {
+            text-decoration: none;
+            color: #a48747;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #d4b251;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 3rem;
+        }
+
+        .logo {
+            height: 60px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0 1.5rem;
+        }
+
+        .nav-links a {
+            font-size: 1.2rem;
+            padding: 0.5rem 1rem;
+            background: #a48747;
+            color: white;
+            border-radius: 25px;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: #d4b251;
+            transform: scale(1.1);
+        }
+
+        .social-media a {
+            margin-left: 1.5rem;
+            color: #d4b251;
+            font-size: 1.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1rem;
+            }
+
+            .nav-links li {
+                margin: 0.5rem 0;
+            }
+        }
+
+        /* Hero Section */
+        .home {
+            height: 100vh;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('https://via.placeholder.com/800x450?text=Automacao+Residencial') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 0 1rem;
+            position: relative;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.7);
+            color: #d4b251;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-primary {
+            background: #a48747;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: #d4b251;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .btn-primary {
+                padding: 0.8rem 1.5rem;
+            }
+        }
+
+        /* About Section */
+        .about {
+            background: #fff;
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://via.placeholder.com/100x100?text=Pattern') repeat;
+            opacity: 0.1;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #a48747;
+        }
+
+        .about p {
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+        }
+
+        .about-images {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .about-image {
+            width: 300px;
+            height: 200px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-experience {
+            margin-top: 3rem;
+            text-align: left;
+        }
+
+        .about-experience p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-experience ul {
+            list-style-type: disc;
+            margin-left: 2rem;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .about h2 {
+                font-size: 2rem;
+            }
+
+            .about p {
+                font-size: 1rem;
+            }
+
+            .about-image {
+                width: 90%;
+                height: auto;
+            }
+        }
+
+        /* Services Section */
+        .services {
+            background: #f9f9f9;
+            padding: 5rem 2rem;
+            position: relative;
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .services h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #a48747;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin: 2rem;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover {
+            transform: scale(1.05);
+        }
+
+        .service-card i {
+            font-size: 3rem;
+            color: #a48747;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .services h2 {
+                font-size: 2rem;
+            }
+
+            .service-card {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+
+            .service-card i {
+                font-size: 2.5rem;
+            }
+
+            .service-card h3 {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Scroll Animation */
+        .service-card,
+        .about-image {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1.2s ease-in-out;
+        }
+
+        .scroll-in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: #fff;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #a48747;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: #a48747;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: #d4b251;
+        }
+
+        @media (max-width: 768px) {
+            .contact h2 {
+                font-size: 2rem;
+            }
+
+            .form-input,
+            .form-textarea {
+                padding: 0.8rem;
+            }
+
+            .btn-primary {
+                padding: 0.8rem 1.5rem;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: #d4b251;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .footer-links a {
+            color: #fff;
+            margin: 0 1rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #a48747;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                text-align: center;
+            }
+
+            .footer-links a {
+                display: block;
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo-container">
+                <img src="/path/to/logo.png" alt="HMT Automação" class="logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="smooth-scroll">Início</a></li>
+                <li><a href="#about" class="smooth-scroll">Sobre Nós</a></li>
+                <li><a href="#services" class="smooth-scroll">Serviços</a></li>
+                <li><a href="#contact" class="smooth-scroll">Contato</a></li>
+            </ul>
+            <div class="social-media">
+                <a href="https://api.whatsapp.com/send?phone=SEU_NUMERO" target="_blank" class="whatsapp"><i
+                        class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/SEU_PERFIL" target="_blank" class="instagram"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/channel/SEU_CANAL" target="_blank" class="youtube"><i
+                        class="fab fa-youtube"></i></a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="home">
+        <video autoplay muted loop class="hero-video"
+            poster="https://via.placeholder.com/800x450?text=Automacao+Residencial" preload="none">
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1>Automação Residencial Simplificada</h1>
+            <p>Transforme seu lar em um ambiente inteligente e conectado com as melhores soluções de automação
+                residencial.</p>
+            <a href="#contact" class="btn-primary smooth-scroll">Converse Conosco</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-container">
+            <h2>Sobre Nós</h2>
+            <p>Na HMT Automação, somos especialistas em soluções inteligentes para sua casa. Trabalhamos para oferecer
+                conforto, segurança e conveniência, utilizando os melhores dispositivos do mercado, compatíveis com
+                Alexa e protocolos WiFi e Zigbee.</p>
+            <div class="about-images">
+                <img src="https://via.placeholder.com/200x150?text=Automacao+Residencial+1" alt="Automação Residencial"
+                    class="about-image">
+                <img src="https://via.placeholder.com/200x150?text=Automacao+Residencial+2" alt="Dispositivos Smarthome"
+                    class="about-image">
+            </div>
+            <div class="about-experience">
+                <h3>Experiência dos Fundadores</h3>
+                <p>Somos três sócios com vasta experiência no setor de automação residencial e tecnologia:</p>
+                <ul>
+                    <li>Mais de 10 anos de experiência coletiva em desenvolvimento de sistemas de automação.</li>
+                    <li>Especialistas em integração de dispositivos IoT (Internet das Coisas).</li>
+                    <li>Projetos realizados para empresas de grande porte e casas inteligentes em várias cidades.</li>
+                    <li>Comprometidos em fornecer as melhores soluções para o conforto e segurança dos nossos clientes.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="services-container">
+            <h2>Nossos Serviços</h2>
+            <div class="service-card">
+                <i class="fas fa-lightbulb"></i>
+                <h3>Iluminação Inteligente</h3>
+                <p>Controle a iluminação da sua casa com comandos de voz e agendamento, proporcionando economia e
+                    praticidade.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-lock"></i>
+                <h3>Segurança Automatizada</h3>
+                <p>Gerencie câmeras de segurança, trancas inteligentes e garanta a segurança do seu lar a qualquer
+                    momento, de qualquer lugar.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-thermometer-half"></i>
+                <h3>Climatização Inteligente</h3>
+                <p>Automatize a climatização da sua casa, criando o ambiente ideal e otimizando o consumo de energia.
+                </p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-voice-command"></i>
+                <h3>Controle por Comando de Voz</h3>
+                <p>Integre sua casa com assistentes virtuais como Alexa e Google Assistente para um controle mais
+                    intuitivo e prático.</p>
+                <img src="https://via.placeholder.com/300x200?text=Comando+de+Voz" alt="Comando de voz para automação"
+                    class="about-image" style="margin-top: 1rem; max-width: 100%;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Example Video Section -->
+    <section id="example-video" class="services">
+        <div class="services-container">
+            <h2>Exemplos de Automação Residencial</h2>
+            <p>Veja como a automação residencial pode transformar o seu lar em um ambiente inteligente e prático:</p>
+            <div class="video-container">
+                <iframe width="560" height="315"
+                    src="https://www.youtube.com/embed/61Bwt1aDq0w?si=QmTx98h8UqPHeMlB&amp;"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="interactive-3d">
+                <iframe src="https://threejs.org/examples/webgl_geometry_cube.html" width="100%" height="300px"
+                    style="border:none;"></iframe>
+                <p>Experimente interagir com nossa casa inteligente em um ambiente 3D e veja como nossas soluções
+                    funcionam!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="contact-container">
+            <h2>Fale Conosco</h2>
+            <p>Quer saber mais sobre como transformar sua casa em um ambiente inteligente? Entre em contato conosco!</p>
+            <form action="#" method="post">
+                <input type="text" name="name" placeholder="Seu Nome" required class="form-input">
+                <input type="email" name="email" placeholder="Seu Email" required class="form-input">
+                <textarea name="message" rows="5" placeholder="Sua Mensagem" required class="form-textarea"></textarea>
+                <button type="submit" class="btn-primary">Enviar Mensagem</button>
+            </form>
+            <div class="social-media">
+                <a href="https://api.whatsapp.com/send?phone=SEU_NUMERO" target="_blank" class="whatsapp"><i
+                        class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a href="https://www.instagram.com/SEU_PERFIL" target="_blank" class="instagram"><i
+                        class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://www.youtube.com/channel/SEU_CANAL" target="_blank" class="youtube"><i
+                        class="fab fa-youtube"></i> YouTube</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 HMT Automação. Todos os direitos reservados.</p>
+            <div class="footer-links">
+                <a href="#home" class="smooth-scroll">Início</a>
+                <a href="#about" class="smooth-scroll">Sobre Nós</a>
+                <a href="#services" class="smooth-scroll">Serviços</a>
+                <a href="#contact" class="smooth-scroll">Contato</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Animation
+        const elementsToShow = document.querySelectorAll('.service-card, .about-image');
+
+        function scrollCallback(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('scroll-in-view');
+                }
+            });
+        }
+
+        const observer = new IntersectionObserver(scrollCallback, {
+            threshold: 0.3,
+        });
+
+        elementsToShow.forEach(element => {
+            observer.observe(element);
+        });
+
+        // Smooth Scroll for Navigation Links
+        document.querySelectorAll('.smooth-scroll').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
